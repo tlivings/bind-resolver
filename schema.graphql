@@ -1,0 +1,11 @@
+directive @bind(
+  uri: String
+) on FIELD_DEFINITION
+
+type Query {
+  exampleQuery: ResponseType @bind(uri:"function://./resolvers")
+}
+
+type ResponseType {
+  field: String
+}
