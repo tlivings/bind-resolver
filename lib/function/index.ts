@@ -1,14 +1,14 @@
 'use strict';
 
-import path from 'path'; 
-import { BindResolverFunction, FactoryOptions } from '../typedefs';
+import { join } from 'path'; 
+import { BindResolverFunction, FactoryOptions } from '..';
 
-export default function ({ fieldName, typeName, resolverPath }: FactoryOptions): BindResolverFunction {
-  if (!resolverPath) {
+export default function ({ typeName, fieldName, path }: FactoryOptions): BindResolverFunction {
+  if (!path) {
     throw new Error('no path specified');
   }
 
-  const file = path.join(process.cwd(), resolverPath);
+  const file = join(process.cwd(), path);
 
   const resolveFunction = require(file);
 
